@@ -8,15 +8,15 @@ const App: React.FC = () => {
   const [todo, setTodo] = useState<string>('');
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if(todo){
-      setTodos([...todos, { id: Date.now(), todo, isDone: false }]);
+      const data = [...todos, { id: Date.now(), todo, isDone: false }];
+      setTodos(data.reverse());
       setTodo('');
     }
   }
-  // console.log(todos);
 
   return (
     <div className="App">

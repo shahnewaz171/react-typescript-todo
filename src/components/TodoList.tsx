@@ -1,24 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Todo } from '../model';
+import SingleTogo from './SingleTogo';
 
-interface Props{
+interface Props {
     todos: Todo[],
     setTodos: React.Dispatch<React.SetStateAction<Todo[]>>
 }
 
-const TodoList: React.FC<Props> = ({ todos, setTodos }) => {
+const TodoList: React.FC<Props> = ({ todos, setTodos }: Props) => {
 
     return (
-        <section>
-            {todos?.map((item, index) => {
-                const { id, todo, isDone } = item;
-                return (
-                    <div key={index + 1}>
-                        <h6>{todo}</h6>
-                        <p>{id}</p>
-                    </div>
-                )
-            })}
+        <section style={{ display: 'flex', flexWrap: 'wrap', padding: '30px', justifyContent: 'space-evenly' }}>
+            {todos?.map((item, index) => <SingleTogo key={item.id} todo={item} todos={todos} setTodos={setTodos} /> )}
         </section>
     );
 };
